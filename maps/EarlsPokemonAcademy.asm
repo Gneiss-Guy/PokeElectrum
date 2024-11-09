@@ -71,7 +71,7 @@ AcademyBlackboard:
 	ifequal 2, .Paralysis
 	ifequal 3, .Sleep
 	ifequal 4, .Burn
-	ifequal 5, .Freeze
+	ifequal 5, .Frostbite
 	closetext
 	end
 
@@ -95,8 +95,8 @@ AcademyBlackboard:
 	waitbutton
 	sjump .Loop
 
-.Freeze:
-	writetext AcademyFreezeText
+.Frostbite:
+	writetext AcademyFrostbiteText
 	waitbutton
 	sjump .Loop
 
@@ -313,11 +313,12 @@ AcademySleepText:
 	done
 
 AcademyBurnText:
-	text "A burn steadily"
-	line "consumes HP."
+	text "If your #MON"
+	line "has a burn, it'll"
+	cont "gradually lose HP."
 
-	para "It also reduces"
-	line "attack power."
+	para "Its ATTACK will"
+	line "also be halved."
 
 	para "A burn lingers"
 	line "after battle."
@@ -326,12 +327,15 @@ AcademyBurnText:
 	line "the cure."
 	done
 
-AcademyFreezeText:
+AcademyFrostbiteText:
 	text "If your #MON is"
-	line "frozen, it can't"
-	cont "do a thing."
+	line "frostbitten, it'll"
+	cont "gradually lose HP."
 
-	para "It remains frozen"
+	para "Its SPCL.ATK will"
+	line "also be halved."
+
+	para "Frostburn lingers"
 	line "after battle."
 
 	para "Thaw it out with"
