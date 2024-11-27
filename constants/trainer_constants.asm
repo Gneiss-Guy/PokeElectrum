@@ -450,6 +450,8 @@ DEF KRIS EQU __trainer_class__
 	const NORTON ; unused
 	const HUGH
 	const MARKUS
+	const MERLE
+	const AVERY
 
 	trainerclass RIVAL2 ; 2a
 	const RIVAL2_1_CHIKORITA
@@ -486,6 +488,7 @@ DEF KRIS EQU __trainer_class__
 	const PARRY3
 	const ANTHONY4
 	const ANTHONY5
+	const GARRY
 
 	trainerclass BIKER ; 2d
 	const BIKER_BENNY ; unused

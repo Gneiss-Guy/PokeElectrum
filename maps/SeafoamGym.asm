@@ -1,5 +1,8 @@
 	object_const_def
 	const SEAFOAMGYM_BLAINE
+	const SEAFOAMGYM_POKEFAN_M
+	const SEAFOAMGYM_SUPER_NERD1
+	const SEAFOAMGYM_SUPER_NERD2
 	const SEAFOAMGYM_GYM_GUIDE
 
 SeafoamGym_MapScripts:
@@ -27,6 +30,9 @@ SeafoamGymBlaineScript:
 .ReturnAfterBattle:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLAINE
+	setevent EVENT_BEAT_HIKER_GARRY
+	setevent EVENT_BEAT_SUPER_NERD_MERLE
+	setevent EVENT_BEAT_SUPER_NERD_AVERY
 	opentext
 	writetext ReceivedVolcanoBadgeText
 	playsound SFX_GET_BADGE
@@ -39,6 +45,39 @@ SeafoamGymBlaineScript:
 
 .FightDone:
 	writetext BlaineFightDoneText
+	waitbutton
+	closetext
+	end
+
+TrainerHikerGarry:
+	trainer HIKER, GARRY, EVENT_BEAT_HIKER_GARRY, HikerGarrySeenText, HikerGarryBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext HikerGarryAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerSupernerdMerle:
+	trainer SUPER_NERD, MERLE, EVENT_BEAT_SUPER_NERD_MERLE, SupernerdMerleSeenText, SupernerdMerleBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext SupernerdMerleAfterBattleText
+	waitbutton
+	closetext
+	end
+
+TrainerSupernerdAvery:
+	trainer SUPER_NERD, AVERY, EVENT_BEAT_SUPER_NERD_AVERY, SupernerdAverySeenText, SupernerdAveryBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext SupernerdAveryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -123,6 +162,74 @@ BlaineFightDoneText:
 	line "Just you watch!"
 	done
 
+HikerGarrySeenText:
+	text "#MON battles"
+	line "in a cave?"
+
+	para "Of course there's"
+	line "a HIKER here!"
+	done
+
+HikerGarryBeatenText:
+	text "Is this cave"
+	line "collapsing now?"
+	done
+
+HikerGarryAfterBattleText:
+	text "The other lads in"
+	line "here are nerdy but"
+	cont "they're tough too."
+	done
+
+SupernerdMerleSeenText:
+	text "Incredible!"
+	line "Wonderful!"
+	cont "Unbelievable!"
+	done
+
+SupernerdMerleBeatenText:
+	text "Do you realise"
+	line "where we are?"
+	done
+
+SupernerdMerleAfterBattleText:
+	text "Rock formations"
+	line "can reveal so much"
+	cont "information!"
+
+	para "These rocks show"
+	line "SEAFOAM has"
+	cont "volcanic origins."
+
+	para "Magma once flowed"
+	line "in this chamber!"
+	done
+
+SupernerdAverySeenText:
+	text "Gwah-ha-ha! We may"
+	line "not have a gym but"
+	cont "we're unstoppable!"
+	done
+
+SupernerdAveryBeatenText:
+	text "You might just"
+	line "douse our fire!"
+	done
+
+SupernerdAveryAfterBattleText:
+	text "Blaine has an"
+	line "unquenchable"
+	cont "spirit!"
+
+	para "The loss of his"
+	line "gym really hurt"
+	cont "him initially."
+
+	para "Now he's back and"
+	line "tougher than ever!"
+	cont "Gwah-ha-ha!"
+	done
+
 SeafoamGymGuideWinText:
 	text "Yo!"
 
@@ -159,7 +266,7 @@ SeafoamGym_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
-	warp_event  5,  5, ROUTE_20, 1
+	warp_event  5,  8, ROUTE_20, 1
 
 	def_coord_events
 
@@ -167,4 +274,7 @@ SeafoamGym_MapEvents:
 
 	def_object_events
 	object_event  5,  2, SPRITE_BLAINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SeafoamGymBlaineScript, -1
-	object_event  6,  5, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuideScript, EVENT_SEAFOAM_GYM_GYM_GUIDE
+	object_event  8,  7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerHikerGarry, -1
+	object_event  8,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerSupernerdMerle, -1
+	object_event  6,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdAvery, -1
+	object_event  3,  7, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuideScript, EVENT_SEAFOAM_GYM_GYM_GUIDE

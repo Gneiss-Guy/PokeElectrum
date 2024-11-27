@@ -3280,6 +3280,22 @@ SuperNerdGroup:
 	dw CURSE, WATER_GUN, GROWL, STRENGTH
 	db -1 ; end
 
+	next_list_item ; SUPER_NERD (15)
+	db "MERLE@", TRAINERTYPE_NORMAL
+	db 43
+	dw MAGMAR
+	db 42
+	dw FLAREON
+	db -1 ; end
+
+	next_list_item ; SUPER_NERD (16)
+	db "AVERY@", TRAINERTYPE_NORMAL
+	db 43
+	dw NINETALES
+	db 42
+	dw ARCANINE
+	db -1 ; end
+
 	end_list_items
 
 Rival2Group:
@@ -3645,6 +3661,14 @@ HikerGroup:
 	db 34
 	dw MACHOKE
 	dw KARATE_CHOP, VITAL_THROW, HEADBUTT, DIG
+	db -1 ; end
+
+	next_list_item ; HIKER (23)
+	db "GARRY@", TRAINERTYPE_NORMAL
+	db 42
+	dw MAGCARGO
+	db 44
+	dw HITMONCHAN
 	db -1 ; end
 
 	end_list_items
